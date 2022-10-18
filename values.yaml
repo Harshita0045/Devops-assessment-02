@@ -1,0 +1,56 @@
+replicaCount: 1
+
+image:
+  repository: mysql
+  pullPolicy: Never
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "5.7"
+
+service:
+  type: ClusterIP
+  port: 3307
+
+config:
+    MYSQL_DATABASE: "sample_db"
+   
+
+secret: 
+    # TODO: update these
+    MYSQL_USER: root
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: sample_db
+   # MYSQLDB_LOCAL_PORT: "3307"
+   # MYSQLDB_DOCKER_PORT: "3306"
+    #NODE_LOCAL_PORT: "6868"
+    #NODE_DOCKER_PORT: "8080"
+   
+
+  
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+
+
+
+image2:
+  repository: nodeapplication
+  pullPolicy: Never
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+
+service2:
+    type: ClusterIP
+    port: 6868
+
+
+
+
+
+
+
